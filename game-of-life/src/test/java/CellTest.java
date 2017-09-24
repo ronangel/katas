@@ -11,8 +11,8 @@ public class CellTest {
     @Test
     public void shouldDieWithLessThanTwoNeighbors()
     {
-        Cell cell = new Cell(true);
-        cell.nextTurn(1);
+        Cell cell = Cell.ALIVE;
+        cell = cell.nextTurn(1);
 
         assertFalse(cell.isAlive());
     }
@@ -20,8 +20,8 @@ public class CellTest {
     @Test
     public void shouldSurviveWithTwoNeighbors()
     {
-        Cell cell = new Cell(true);
-        cell.nextTurn(2);
+        Cell cell = Cell.ALIVE;
+        cell = cell.nextTurn(2);
 
         assertTrue(cell.isAlive());
     }
@@ -29,8 +29,8 @@ public class CellTest {
     @Test
     public void shouldSurviveWithThreeNeighbors()
     {
-        Cell cell = new Cell(true);
-        cell.nextTurn(3);
+        Cell cell = Cell.ALIVE;
+        cell = cell.nextTurn(3);
 
         assertTrue(cell.isAlive());
     }
@@ -38,8 +38,8 @@ public class CellTest {
     @Test
     public void shouldDieWithMoreThanThreeNeighbors()
     {
-        Cell cell = new Cell(true);
-        cell.nextTurn(4);
+        Cell cell = Cell.ALIVE;
+        cell = cell.nextTurn(4);
 
         assertFalse(cell.isAlive());
     }
@@ -47,8 +47,8 @@ public class CellTest {
     @Test
     public void shouldReviveIfDeadWithExactlyThreeNeighbors()
     {
-        Cell cell = new Cell(false);
-        cell.nextTurn(3);
+        Cell cell = Cell.DEAD;
+        cell = cell.nextTurn(3);
 
         assertTrue(cell.isAlive());
     }

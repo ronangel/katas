@@ -3,12 +3,6 @@ import java.util.List;
 
 public class NeighborLocator
 {
-
-    public NeighborLocator()
-    {
-
-    }
-
     public List<CellLocation> locateNeighbors(CellLocation location)
     {
         List<CellLocation> locations = new ArrayList<>(8);
@@ -25,9 +19,4 @@ public class NeighborLocator
 
         return locations;
     }
-
-//    public List<Cell> locateNeighbors(CellLocation bottomLeftCorner)
-//    {
-//
-//    }
 }

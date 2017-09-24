@@ -10,7 +10,7 @@ public class CellLocationValidatorTest
     private Grid grid;
 
     @Before
-    public void setup()
+    public void setup() throws InvalidGridSizeException
     {
         validator = new CellLocationValidator();
         grid = new Grid(10, 10);

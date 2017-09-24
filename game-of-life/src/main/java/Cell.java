@@ -1,26 +1,36 @@
 public class Cell
 {
-    private boolean isAlive;
+    public static Cell ALIVE = new Cell(true);
+    public static Cell DEAD = new Cell(false);
 
-    public Cell(boolean isAlive)
+    private final boolean isAlive;
+
+    private Cell(boolean isAlive)
     {
         this.isAlive = isAlive;
     }
 
-    public void nextTurn(int numNeighbors)
+    public Cell nextTurn(int numAliveNeighbors)
     {
-        if (numNeighbors < 2)
+        boolean isAlive;
+
+        if (numAliveNeighbors < 2)
         {
-            this.isAlive = false;
+            isAlive = false;
         }
-        else if (numNeighbors > 3)
+        else if (numAliveNeighbors > 3)
         {
-            this.isAlive = false;
+            isAlive = false;
         }
-        else if (numNeighbors == 3)
+        else //if (numAliveNeighbors == 3)
         {
-            this.isAlive = true;
+            isAlive = true;
         }
+
+        if (isAlive)
+            return Cell.ALIVE;
+
+        return Cell.DEAD;
     }
 
     public boolean isAlive()
