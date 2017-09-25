@@ -4,6 +4,7 @@ import org.mockito.runners.MockitoJUnitRunner;
 
 import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertTrue;
+import static org.junit.Assert.fail;
 
 @RunWith(MockitoJUnitRunner.class)
 public class CellTest {
@@ -51,6 +52,24 @@ public class CellTest {
         cell = cell.nextTurn(3);
 
         assertTrue(cell.isAlive());
+    }
+
+    @Test
+    public void shouldStayDeadWithOnlyTwoNeighbors()
+    {
+        Cell cell = Cell.DEAD;
+        cell = cell.nextTurn(2);
+
+        assertFalse(cell.isAlive());
+    }
+
+    @Test
+    public void shouldStayDeadWithFourNeighbors()
+    {
+        Cell cell = Cell.DEAD;
+        cell = cell.nextTurn(4);
+
+        assertFalse(cell.isAlive());
     }
 
     // TODO - set mock Grid and have cells ask for their number of neighbors, which will delegate to the Grid

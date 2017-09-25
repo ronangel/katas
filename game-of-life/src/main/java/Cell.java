@@ -12,17 +12,16 @@ public class Cell
 
     public Cell nextTurn(int numAliveNeighbors)
     {
-        boolean isAlive;
+        boolean isAlive = false;
 
-        if (numAliveNeighbors < 2)
+        if (this.isAlive)
         {
-            isAlive = false;
+            if (numAliveNeighbors == 2 || numAliveNeighbors == 3)
+            {
+                isAlive = true;
+            }
         }
-        else if (numAliveNeighbors > 3)
-        {
-            isAlive = false;
-        }
-        else //if (numAliveNeighbors == 3)
+        else if (numAliveNeighbors == 3)
         {
             isAlive = true;
         }
