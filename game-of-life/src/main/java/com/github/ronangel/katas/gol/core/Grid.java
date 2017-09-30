@@ -1,5 +1,8 @@
 package com.github.ronangel.katas.gol.core;
 
+import com.github.ronangel.katas.gol.core.exceptions.InvalidCellLocationException;
+import com.github.ronangel.katas.gol.core.exceptions.InvalidGridSizeException;
+
 import java.util.ArrayList;
 import java.util.List;
 

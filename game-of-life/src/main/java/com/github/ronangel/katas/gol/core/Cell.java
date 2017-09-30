@@ -38,4 +38,10 @@ public class Cell
     {
         return isAlive;
     }
+
+    @Override
+    public String toString() {
+        return isAlive ? "ALIVE" : "DEAD";
+    }
+
 }
