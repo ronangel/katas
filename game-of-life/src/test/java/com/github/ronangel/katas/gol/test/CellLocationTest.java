@@ -1,3 +1,6 @@
+package com.github.ronangel.katas.gol.test;
+
+import com.github.ronangel.katas.gol.core.CellLocation;
 import org.junit.Test;
 import static org.junit.Assert.*;
 

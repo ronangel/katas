@@ -1,3 +1,5 @@
+package com.github.ronangel.katas.gol.core;
+
 import java.util.ArrayList;
 import java.util.List;
 

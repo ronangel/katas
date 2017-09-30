@@ -1,3 +1,10 @@
+package com.github.ronangel.katas.gol.test;
+
+import com.github.ronangel.katas.gol.core.Cell;
+import com.github.ronangel.katas.gol.core.CellLocation;
+import com.github.ronangel.katas.gol.core.Grid;
+import com.github.ronangel.katas.gol.core.rendering.GridRenderer;
+import com.github.ronangel.katas.gol.core.rendering.TextRenderer;
 import org.junit.Before;
 import org.junit.Test;
 

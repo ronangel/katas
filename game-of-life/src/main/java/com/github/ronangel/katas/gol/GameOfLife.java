@@ -1,3 +1,9 @@
+package com.github.ronangel.katas.gol;
+
+import com.github.ronangel.katas.gol.core.*;
+import com.github.ronangel.katas.gol.core.rendering.GridRenderer;
+import com.github.ronangel.katas.gol.core.rendering.TextRenderer;
+
 public class GameOfLife
 {
     public static void main(String []args)

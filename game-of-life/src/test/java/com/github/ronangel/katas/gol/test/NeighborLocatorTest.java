@@ -1,3 +1,6 @@
+package com.github.ronangel.katas.gol.test;
+
+import com.github.ronangel.katas.gol.core.*;
 import org.junit.Test;
 
 import java.util.ArrayList;

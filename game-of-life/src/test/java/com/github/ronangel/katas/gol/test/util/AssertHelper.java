@@ -1,4 +1,4 @@
-package util;
+package com.github.ronangel.katas.gol.test.util;
 
 import static org.junit.Assert.*;
 

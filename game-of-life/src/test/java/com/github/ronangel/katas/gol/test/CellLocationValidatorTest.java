@@ -1,3 +1,9 @@
+package com.github.ronangel.katas.gol.test;
+
+import com.github.ronangel.katas.gol.core.CellLocation;
+import com.github.ronangel.katas.gol.core.CellLocationValidator;
+import com.github.ronangel.katas.gol.core.Grid;
+import com.github.ronangel.katas.gol.core.exceptions.InvalidGridSizeException;
 import org.junit.Before;
 import org.junit.Test;
 

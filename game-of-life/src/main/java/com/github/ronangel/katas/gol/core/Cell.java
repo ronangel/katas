@@ -1,3 +1,5 @@
+package com.github.ronangel.katas.gol.core;
+
 public class Cell
 {
     public static Cell ALIVE = new Cell(true);

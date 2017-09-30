@@ -1,8 +1,15 @@
+package com.github.ronangel.katas.gol.test;
+
+import com.github.ronangel.katas.gol.core.Cell;
+import com.github.ronangel.katas.gol.core.CellLocation;
+import com.github.ronangel.katas.gol.core.Grid;
+import com.github.ronangel.katas.gol.core.exceptions.InvalidCellLocationException;
+import com.github.ronangel.katas.gol.core.exceptions.InvalidGridSizeException;
 import org.junit.Test;
 
 import static org.junit.Assert.*;
 import static org.mockito.Mockito.mock;
-import static util.AssertHelper.assertThrows;
+import static com.github.ronangel.katas.gol.test.util.AssertHelper.assertThrows;
 
 public class GridTest
 {

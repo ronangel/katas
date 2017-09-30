@@ -1,3 +1,9 @@
+package com.github.ronangel.katas.gol.core.rendering;
+
+import com.github.ronangel.katas.gol.core.CellLocation;
+import com.github.ronangel.katas.gol.core.Grid;
+import com.github.ronangel.katas.gol.core.rendering.GridRenderer;
+
 import java.io.OutputStream;
 
 public class TextRenderer implements GridRenderer

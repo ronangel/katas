@@ -1,3 +1,9 @@
+package com.github.ronangel.katas.gol.test;
+
+import com.github.ronangel.katas.gol.core.Cell;
+import com.github.ronangel.katas.gol.core.CellLocation;
+import com.github.ronangel.katas.gol.core.DeathChecker;
+import com.github.ronangel.katas.gol.core.Grid;
 import org.junit.Before;
 import org.junit.Test;
 

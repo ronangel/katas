@@ -1,3 +1,6 @@
+package com.github.ronangel.katas.gol.test;
+
+import com.github.ronangel.katas.gol.core.Cell;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.mockito.runners.MockitoJUnitRunner;
@@ -72,5 +75,5 @@ public class CellTest {
         assertFalse(cell.isAlive());
     }
 
-    // TODO - set mock Grid and have cells ask for their number of neighbors, which will delegate to the Grid
+    // TODO - set mock com.github.ronangel.katas.gol.core.Grid and have cells ask for their number of neighbors, which will delegate to the com.github.ronangel.katas.gol.core.Grid
 }

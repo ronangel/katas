@@ -1,3 +1,5 @@
+package com.github.ronangel.katas.gol.core;
+
 public class CellLocationValidator
 {
     public boolean validate(Grid grid, CellLocation location)
