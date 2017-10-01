@@ -1,7 +1,5 @@
 package com.github.ronangel.katas.gol.ui;
 
-import com.github.ronangel.katas.gol.core.Cell;
-import com.github.ronangel.katas.gol.core.CellLocation;
 import com.github.ronangel.katas.gol.core.Grid;
 import com.github.ronangel.katas.gol.core.rendering.GridRenderer;
 import javafx.application.Application;
@@ -9,8 +7,6 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
-
-import java.io.IOException;
 
 public class GameOfLifeUI extends Application {
 
@@ -23,7 +19,7 @@ public class GameOfLifeUI extends Application {
     {
         Grid grid = new Grid(15, 10);
 
-        FXMLLoader loader = new FXMLLoader(getClass().getResource("GameOfLifeUI.fxml"));
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("../../../../../../../resources/GameOfLifeUI.fxml"));
         Parent root = loader.load();
 
         GameOfLifeController controller = loader.getController();
