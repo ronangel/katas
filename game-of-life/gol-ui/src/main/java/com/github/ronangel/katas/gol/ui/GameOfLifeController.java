@@ -5,7 +5,6 @@ import com.github.ronangel.katas.gol.core.CellLocation;
 import com.github.ronangel.katas.gol.core.Grid;
 import com.github.ronangel.katas.gol.core.exceptions.InvalidCellLocationException;
 import com.github.ronangel.katas.gol.core.rendering.GridRenderer;
-import javafx.animation.AnimationTimer;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.canvas.Canvas;
@@ -39,6 +38,8 @@ public class GameOfLifeController {
 
     private int lastTurn;
 
+    private RegisterableAnimationTimer registerableAnimationTimer;
+
     public GridRenderer getRenderer() {
         return renderer;
     }
@@ -48,7 +49,8 @@ public class GameOfLifeController {
         renderer = new CanvasGridRenderer(canvas);
         turnsPerSecond = 1;
         lastTurn = 0;
-        gameTimer = new GameProgressTimer();
+        registerableAnimationTimer = new RegisterableAnimationTimer();
+        gameTimer = new GameProgressTimer(registerableAnimationTimer, ((start, now) -> gameTick(start, now)));
     }
 
     public void setGrid(Grid grid) {
@@ -69,7 +71,7 @@ public class GameOfLifeController {
     void gridMouseClick(MouseEvent event) {
 
         // can only click on cells while the game is not progressing
-        if (gameTimer.isRunning())
+        if (gameTimer.isStarted())
             return;
 
         double canvasX = event.getX();
@@ -103,11 +105,15 @@ public class GameOfLifeController {
         }
     }
 
+    private long lastTurnNano = 0;
+
     private long gameTick(long start, long now) {
 
-        long elapsedNanos = now - start;
+        if (lastTurnNano == 0)
+            lastTurnNano = start;
+
+        long elapsedNanos = now - lastTurnNano;
         long nanosPerTurn = TimeUnit.SECONDS.toNanos(1) / turnsPerSecond;
-        long lastTurnNano = start;
 
         int turnsAdvanced = 0;
         while (elapsedNanos > nanosPerTurn) {
@@ -125,39 +131,5 @@ public class GameOfLifeController {
         }
 
         return lastTurnNano;
-    }
-
-    private class GameProgressTimer extends AnimationTimer {
-
-        private long start;
-        private boolean isRunning;
-
-        public GameProgressTimer() {
-//            start = System.nanoTime();
-        }
-
-        @Override
-        public void handle(long now) {
-            start = gameTick(start, now);
-        }
-
-        @Override
-        public void start() {
-            start = System.nanoTime();
-            isRunning = true;
-
-            super.start();
-        }
-
-        @Override
-        public void stop() {
-            isRunning = false;
-
-            super.stop();
-        }
-
-        public boolean isRunning() {
-            return isRunning;
-        }
     }
 }
