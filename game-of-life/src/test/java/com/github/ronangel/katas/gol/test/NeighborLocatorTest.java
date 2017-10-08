@@ -16,20 +16,20 @@ public class NeighborLocatorTest
     {
         NeighborLocator locator = new NeighborLocator();
 
-        CellLocation location = new CellLocation(0, 0);
+        CellLocation location = CellLocation.get(0, 0);
 
         List<CellLocation> neighbors = locator.locateNeighbors(location);
 
         assertEquals(8, neighbors.size());
 
-        assertTrue(neighbors.contains(new CellLocation(1, 1)));
-        assertTrue(neighbors.contains(new CellLocation(1, 0)));
-        assertTrue(neighbors.contains(new CellLocation(1, -1)));
-        assertTrue(neighbors.contains(new CellLocation(0, -1)));
-        assertTrue(neighbors.contains(new CellLocation(0, 1)));
-        assertTrue(neighbors.contains(new CellLocation(-1, 1)));
-        assertTrue(neighbors.contains(new CellLocation(-1, 0)));
-        assertTrue(neighbors.contains(new CellLocation(-1, -1)));
+        assertTrue(neighbors.contains(CellLocation.get(1, 1)));
+        assertTrue(neighbors.contains(CellLocation.get(1, 0)));
+        assertTrue(neighbors.contains(CellLocation.get(1, -1)));
+        assertTrue(neighbors.contains(CellLocation.get(0, -1)));
+        assertTrue(neighbors.contains(CellLocation.get(0, 1)));
+        assertTrue(neighbors.contains(CellLocation.get(-1, 1)));
+        assertTrue(neighbors.contains(CellLocation.get(-1, 0)));
+        assertTrue(neighbors.contains(CellLocation.get(-1, -1)));
     }
 
     @Test
@@ -38,9 +38,9 @@ public class NeighborLocatorTest
         Grid grid = new Grid(2, 2);
 
         List<CellLocation> theValidLocations = new ArrayList<>(3);
-        theValidLocations.add(new CellLocation(0, 1));
-        theValidLocations.add(new CellLocation(1, 1));
-        theValidLocations.add(new CellLocation(1, 0));
+        theValidLocations.add(CellLocation.get(0, 1));
+        theValidLocations.add(CellLocation.get(1, 1));
+        theValidLocations.add(CellLocation.get(1, 0));
 
         for (CellLocation loc : theValidLocations)
         {
@@ -49,7 +49,7 @@ public class NeighborLocatorTest
 
         NeighborLocator locator = new NeighborLocator();
 
-        CellLocation bottomLeftCorner = new CellLocation(0,0);
+        CellLocation bottomLeftCorner = CellLocation.get(0,0);
 
         List<CellLocation> neighborLocations = locator.locateNeighbors(bottomLeftCorner);
 

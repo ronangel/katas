@@ -32,7 +32,7 @@ public class DeathCheckerTest
     @Test
     public void shouldReturnGridIsNotDead() throws Exception
     {
-        grid.setCell(Cell.ALIVE, new CellLocation(5, 5));
+        grid.setCell(Cell.ALIVE, CellLocation.get(5, 5));
 
         assertFalse(checker.check(grid));
     }

@@ -9,7 +9,7 @@ public class CellLocationTest
     @Test
     public void shouldReturnCoordinateValuesPassedToConstructor()
     {
-        CellLocation cellLocation = new CellLocation(1, 1);
+        CellLocation cellLocation = CellLocation.get(1, 1);
 
         int x = cellLocation.getX();
 
@@ -23,8 +23,8 @@ public class CellLocationTest
     @Test
     public void cellLocationsShouldBeEqual()
     {
-        CellLocation loc1 = new CellLocation(5, 5);
-        CellLocation loc2 = new CellLocation(5, 5);
+        CellLocation loc1 = CellLocation.get(5, 5);
+        CellLocation loc2 = CellLocation.get(5, 5);
 
         assertEquals(loc1, loc2);
     }

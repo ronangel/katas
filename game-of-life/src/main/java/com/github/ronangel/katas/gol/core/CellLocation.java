@@ -5,10 +5,14 @@ public class CellLocation
     private final int x;
     private final int y;
 
-    public CellLocation(int x, int y)
+    private CellLocation(int x, int y)
     {
         this.x = x;
         this.y = y;
+    }
+
+    public static CellLocation get(int x, int y) {
+        return new CellLocation(x, y);
     }
 
     public int getX()

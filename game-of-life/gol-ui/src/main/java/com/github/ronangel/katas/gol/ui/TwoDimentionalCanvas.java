@@ -2,7 +2,7 @@ package com.github.ronangel.katas.gol.ui;
 
 import javafx.scene.canvas.Canvas;
 
-public class TwoDimentionalCanvas {
+public class TwoDimentionalCanvas implements TwoDimentional {
 
     private final Canvas canvas;
 
@@ -10,11 +10,11 @@ public class TwoDimentionalCanvas {
         this.canvas = canvas;
     }
 
+    @Override
     public double getHeight() {
         return canvas.getHeight();
     }
 
-    public double getWidth() {
-        return 0.0;
-    }
+    @Override
+    public double getWidth() { return canvas.getWidth(); }
 }

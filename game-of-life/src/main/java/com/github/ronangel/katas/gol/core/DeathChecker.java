@@ -8,7 +8,7 @@ public class DeathChecker
         {
             for (int row = 0; row < grid.getHeight(); row++)
             {
-                if (grid.getCell(new CellLocation(col, row)).isAlive())
+                if (grid.getCell(CellLocation.get(col, row)).isAlive())
                 {
                     return false;
                 }

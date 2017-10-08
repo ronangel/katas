@@ -23,7 +23,7 @@ public class TextRenderer implements GridRenderer
         {
             for (int col = 0; col < grid.getWidth(); col++)
             {
-                char c = grid.getCell(new CellLocation(col, row)).isAlive() ? 'X' : '.';
+                char c = grid.getCell(CellLocation.get(col, row)).isAlive() ? 'X' : '.';
 
                 outputStream.write(c);
             }

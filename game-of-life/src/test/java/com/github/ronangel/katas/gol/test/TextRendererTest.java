@@ -50,7 +50,7 @@ public class TextRendererTest {
         final String expected = "..X......\n";
 
         grid = new Grid(9, 1);
-        grid.setCell(Cell.ALIVE, new CellLocation(2, 0));
+        grid.setCell(Cell.ALIVE, CellLocation.get(2, 0));
 
         gridRenderer.render(grid);
 
@@ -73,7 +73,7 @@ public class TextRendererTest {
                         "..........\n" +
                         "..........\n";
 
-        grid.setCell(Cell.ALIVE, new CellLocation(5, 5));
+        grid.setCell(Cell.ALIVE, CellLocation.get(5, 5));
 
         gridRenderer.render(grid);
 
@@ -96,7 +96,7 @@ public class TextRendererTest {
                         "..........\n" +
                         "...X......\n";
 
-        grid.setCell(Cell.ALIVE, new CellLocation(3, 0));
+        grid.setCell(Cell.ALIVE, CellLocation.get(3, 0));
 
         gridRenderer.render(grid);
 
@@ -119,7 +119,7 @@ public class TextRendererTest {
                         "..........\n" +
                         "..........\n";
 
-        grid.setCell(Cell.ALIVE, new CellLocation(9, 9));
+        grid.setCell(Cell.ALIVE, CellLocation.get(9, 9));
 
         gridRenderer.render(grid);
 

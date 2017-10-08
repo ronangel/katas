@@ -1,20 +1,67 @@
 package com.github.ronangel.katas.gol.ui.test;
 
+import com.github.ronangel.katas.gol.core.Cell;
+import com.github.ronangel.katas.gol.core.CellLocation;
+import com.github.ronangel.katas.gol.core.Grid;
+import com.github.ronangel.katas.gol.core.exceptions.InvalidCellLocationException;
+import com.github.ronangel.katas.gol.ui.GridLocationResolver;
 import com.github.ronangel.katas.gol.ui.GridOverlay;
-import com.github.ronangel.katas.gol.ui.TwoDimentional;
-import org.junit.Assert;
+import com.github.ronangel.katas.gol.ui.InvalidCoordinateException;
+import com.intellij.util.xmlb.annotations.Text;
+import org.junit.Before;
 import org.junit.Test;
 
 import static org.mockito.Mockito.mock;
+import static org.mockito.Mockito.verify;
+import static org.mockito.Mockito.when;
 
 public class GridOverlayTest {
 
+    private Grid grid;
+    private GridLocationResolver locationResolver;
+    private CellLocation cellLocation;
+    private GridOverlay gridOverlay;
+
+    @Before
+    public void setup() throws Exception {
+        grid = mock(Grid.class);
+        locationResolver = mock(GridLocationResolver.class);
+        cellLocation = cellLocation;
+        gridOverlay = new GridOverlay(grid, locationResolver);
+
+        when(grid.getCell(cellLocation)).thenReturn(Cell.DEAD);
+        when(locationResolver.getCellLocation(42.0, 84.0)).thenReturn(cellLocation);
+    }
+
     @Test
-    public void shouldDetermineCorrectCellLocationForGridCoordinates() {
-        GridOverlay gridOverlay = new GridOverlay();
+    public void shouldGetCellLocationFromGridLocationResolver() throws Exception {
+        gridOverlay.flipCell(42.0, 84.0);
 
-        TwoDimentional twoDimentionalObject = mock(TwoDimentional.class);
+        verify(locationResolver).getCellLocation(42.0, 84.0);
+    }
 
-        Assert.fail("test not fully implemented");
+    @Test
+    public void shouldGetCellValueFromGridInOrderToFlipCell() throws Exception {
+        gridOverlay.flipCell(42.0, 84.0);
+
+        verify(grid).getCell(cellLocation);
+    }
+
+    @Test
+    public void shouldTurnOnDeadCellOnGrid() throws Exception {
+        when(grid.getCell(cellLocation)).thenReturn(Cell.DEAD);
+
+        gridOverlay.flipCell(42.0, 84.0);
+
+        verify(grid).setCell(Cell.ALIVE, cellLocation);
+    }
+
+    @Test
+    public void shouldTurnOffAliveCellOnGrid() throws Exception {
+        when(grid.getCell(cellLocation)).thenReturn(Cell.ALIVE);
+
+        gridOverlay.flipCell(42.0, 84.0);
+
+        verify(grid).setCell(Cell.DEAD, cellLocation);
     }
 }

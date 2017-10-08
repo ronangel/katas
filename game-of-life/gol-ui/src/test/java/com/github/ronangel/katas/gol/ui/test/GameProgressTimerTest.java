@@ -1,44 +1,41 @@
 package com.github.ronangel.katas.gol.ui.test;
 
 import com.github.ronangel.katas.gol.ui.*;
+import javafx.animation.AnimationTimer;
 import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.mockito.Mock;
-import org.mockito.runners.MockitoJUnitRunner;
+import org.mockito.junit.MockitoJUnitRunner;
 
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertTrue;
+import static org.mockito.ArgumentMatchers.notNull;
 import static org.mockito.Mockito.*;
 
 @RunWith(MockitoJUnitRunner.class)
 public class GameProgressTimerTest
 {
     @Mock
-    RegisterableAnimationTimer registerableAnimationTimer;
+    AnimationTimer animationTimer;
 
     @Mock
     private TimestampProvider timestampProvider;
 
     @Mock
-    private GameTickHandler gameTickHandler;
+    private TimerHandler gameTickHandler;
 
     GameProgressTimer gameProgressTimer;
 
     @Before
     public void setup() throws Exception {
-        gameProgressTimer = new GameProgressTimer(registerableAnimationTimer, gameTickHandler);
+        gameProgressTimer = new GameProgressTimer(animationTimer);
     }
 
     @Test(expected = IllegalArgumentException.class)
     public void shouldThrowIfAnimationTimerIsNull() {
-        gameProgressTimer = new GameProgressTimer(null, gameTickHandler);
-    }
-
-    @Test(expected = IllegalArgumentException.class)
-    public void shouldThrowIfGameTickHandlerIsNull() {
-        gameProgressTimer = new GameProgressTimer(registerableAnimationTimer, null);
+        gameProgressTimer = new GameProgressTimer(null);
     }
 
     @Test
@@ -46,7 +43,7 @@ public class GameProgressTimerTest
 
         gameProgressTimer.start();
 
-        verify(registerableAnimationTimer).start();
+        verify(animationTimer).start();
     }
 
     @Test
@@ -54,7 +51,7 @@ public class GameProgressTimerTest
 
         gameProgressTimer.stop();
 
-        verify(registerableAnimationTimer).stop();
+        verify(animationTimer).stop();
     }
 
     @Test
@@ -92,31 +89,5 @@ public class GameProgressTimerTest
         gameProgressTimer.start();
 
         assertEquals(42L, gameProgressTimer.getStartTimeNano());
-    }
-
-    @Test
-    public void shouldRegisterItselfWithTimer() {
-        verify(registerableAnimationTimer).registerHandler(notNull(TimerHandler.class));
-    }
-
-    @Test
-    public void shouldDelegateToGameTickHandlerOnHandle() {
-
-        registerableAnimationTimer = mock(RegisterableAnimationTimer.class);
-
-        doCallRealMethod().when(registerableAnimationTimer).registerHandler(any(TimerHandler.class));
-        doCallRealMethod().when(registerableAnimationTimer).handle(84L);
-
-        gameProgressTimer = new GameProgressTimer(registerableAnimationTimer, gameTickHandler);
-
-        gameProgressTimer.setTimestampProvider(timestampProvider);
-
-        when(timestampProvider.getCurrentTimeNanos()).thenReturn(42L);
-
-        gameProgressTimer.start();
-
-        registerableAnimationTimer.handle(84L);
-
-        verify(gameTickHandler).gameTick(42, 84);
     }
 }

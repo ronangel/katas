@@ -12,10 +12,10 @@ public class GameOfLife
         {
             Grid grid = new Grid(10, 10);
 
-            grid.setCell(Cell.ALIVE, new CellLocation(4, 5));
-            grid.setCell(Cell.ALIVE, new CellLocation(5, 5));
-            grid.setCell(Cell.ALIVE, new CellLocation(6, 5));
-            grid.setCell(Cell.ALIVE, new CellLocation(5, 6));
+            grid.setCell(Cell.ALIVE, CellLocation.get(4, 5));
+            grid.setCell(Cell.ALIVE, CellLocation.get(5, 5));
+            grid.setCell(Cell.ALIVE, CellLocation.get(6, 5));
+            grid.setCell(Cell.ALIVE, CellLocation.get(5, 6));
 
             GridRenderer renderer = new TextRenderer(System.out);
 

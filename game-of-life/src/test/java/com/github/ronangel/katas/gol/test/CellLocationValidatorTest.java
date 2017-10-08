@@ -25,7 +25,7 @@ public class CellLocationValidatorTest
     @Test
     public void shouldReturnValid()
     {
-        CellLocation location = new CellLocation(5, 5);
+        CellLocation location = CellLocation.get(5, 5);
 
         boolean isLocationValid = validator.validate(grid, location);
 
@@ -35,7 +35,7 @@ public class CellLocationValidatorTest
     @Test
     public void shouldReturnInvalidBecauseColIsNegative()
     {
-        CellLocation location = new CellLocation(-1, 0);
+        CellLocation location = CellLocation.get(-1, 0);
 
         boolean isLocationValid = validator.validate(grid, location);
 
@@ -45,7 +45,7 @@ public class CellLocationValidatorTest
     @Test
     public void shouldReturnInvalidBecauseRowIsNegative()
     {
-        CellLocation location = new CellLocation(0, -1);
+        CellLocation location = CellLocation.get(0, -1);
 
         boolean isLocationValid = validator.validate(grid, location);
 
@@ -55,7 +55,7 @@ public class CellLocationValidatorTest
     @Test
     public void shouldReturnInvalidBecauseColIsOutOfBounds()
     {
-        CellLocation location = new CellLocation(10, 0);
+        CellLocation location = CellLocation.get(10, 0);
 
         boolean isLocationValid = validator.validate(grid, location);
 
@@ -65,7 +65,7 @@ public class CellLocationValidatorTest
     @Test
     public void shouldReturnInvalidBecauseRowIsOutOfBounds()
     {
-        CellLocation location = new CellLocation(0, 10);
+        CellLocation location = CellLocation.get(0, 10);
 
         boolean isLocationValid = validator.validate(grid, location);
 
@@ -75,7 +75,7 @@ public class CellLocationValidatorTest
     @Test
     public void shouldReturnValidForBottomLeftCorner()
     {
-        CellLocation location = new CellLocation(0, 0);
+        CellLocation location = CellLocation.get(0, 0);
 
         boolean isLocationValid = validator.validate(grid, location);
 
@@ -85,7 +85,7 @@ public class CellLocationValidatorTest
     @Test
     public void shouldReturnValidForBottomRightCorner()
     {
-        CellLocation location = new CellLocation(9, 0);
+        CellLocation location = CellLocation.get(9, 0);
 
         boolean isLocationValid = validator.validate(grid, location);
 
@@ -95,7 +95,7 @@ public class CellLocationValidatorTest
     @Test
     public void shouldReturnValidForTopLeftCorner()
     {
-        CellLocation location = new CellLocation(0, 9);
+        CellLocation location = CellLocation.get(0, 9);
 
         boolean isLocationValid = validator.validate(grid, location);
 
@@ -105,7 +105,7 @@ public class CellLocationValidatorTest
     @Test
     public void shouldReturnValidForTopRightCorner()
     {
-        CellLocation location = new CellLocation(9, 0);
+        CellLocation location = CellLocation.get(9, 0);
 
         boolean isLocationValid = validator.validate(grid, location);
 

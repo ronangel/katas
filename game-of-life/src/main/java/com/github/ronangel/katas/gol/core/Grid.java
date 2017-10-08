@@ -74,7 +74,7 @@ public class Grid
         {
             for (int row = 0; row < height; row++)
             {
-                CellLocation currentCellLocation = new CellLocation(col, row);
+                CellLocation currentCellLocation = CellLocation.get(col, row);
                 Cell currentCell = getCell(currentCellLocation);
 
                 List<CellLocation> neighborLocations = neighborLocator.locateNeighbors(currentCellLocation);

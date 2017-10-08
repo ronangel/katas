@@ -6,29 +6,20 @@ public class GameProgressTimer {
 
     private final AnimationTimer animationTimer;
 
-    private GameTickHandler gameTickHandler;
     private TimestampProvider timestampProvider;
     private boolean started;
     private long startTimeNano;
 
-    public GameProgressTimer(RegisterableAnimationTimer animationTimer, GameTickHandler gameTickHandler) {
+    public GameProgressTimer(AnimationTimer animationTimer) {
 
         if (animationTimer == null)
         {
             throw new IllegalArgumentException("animationTimer cannot be null");
         }
 
-        if (gameTickHandler == null)
-        {
-            throw new IllegalArgumentException("gameTickHandler cannot be null");
-        }
-
         this.animationTimer = animationTimer;
-        this.gameTickHandler = gameTickHandler;
         this.started = false;
         this.timestampProvider = System::nanoTime;
-
-        animationTimer.registerHandler((now) -> handle(now));
     }
 
     public void start() {
@@ -57,9 +48,5 @@ public class GameProgressTimer {
 
     public long getStartTimeNano() {
         return startTimeNano;
-    }
-
-    private void handle(long now) {
-        gameTickHandler.gameTick(startTimeNano, now);
     }
 }

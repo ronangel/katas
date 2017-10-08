@@ -85,7 +85,7 @@ public class CanvasGridRenderer implements GridRenderer
         {
             for (int row = 0; row < grid.getHeight(); row++)
             {
-                Cell cell = grid.getCell(new CellLocation(col, row));
+                Cell cell = grid.getCell(CellLocation.get(col, row));
 
                 if (cell.isAlive())
                 {

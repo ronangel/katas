@@ -14,8 +14,8 @@
          </children></AnchorPane>
     <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="100.0" prefWidth="160.0">
          <children>
-            <Button fx:id="startButton" layoutX="52.0" layoutY="31.0" mnemonicParsing="false" onAction="#pressStartButton" prefHeight="43.0" prefWidth="135.0" text="Start" />
-            <Button fx:id="stopButton" layoutX="265.0" layoutY="31.0" mnemonicParsing="false" onAction="#pressStopButton" prefHeight="43.0" prefWidth="135.0" text="Stop" />
+            <Button fx:id="startButton" layoutX="52.0" layoutY="31.0" mnemonicParsing="false" onAction="#startButtonPressed" prefHeight="43.0" prefWidth="135.0" text="Start" />
+            <Button fx:id="stopButton" layoutX="265.0" layoutY="31.0" mnemonicParsing="false" onAction="#stopButtonPressed" prefHeight="43.0" prefWidth="135.0" text="Stop" />
             <Label fx:id="turnNumberLabel" alignment="CENTER" layoutX="444.0" layoutY="31.0" prefHeight="43.0" prefWidth="82.0" text="0" />
          </children>
     </AnchorPane>

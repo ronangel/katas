@@ -45,9 +45,9 @@ public class GridTest
 
         Cell cell = mock(Cell.class);
 
-        grid.setCell(cell, new CellLocation(0, 0));
+        grid.setCell(cell, CellLocation.get(0, 0));
 
-        Cell returnedCell = grid.getCell(new CellLocation(0, 0));
+        Cell returnedCell = grid.getCell(CellLocation.get(0, 0));
 
         assertEquals(cell, returnedCell);
     }
@@ -57,9 +57,9 @@ public class GridTest
     {
         Grid grid = new Grid(10, 10);
 
-        assertThrows(() -> grid.setCell(Cell.DEAD, new CellLocation(-1,0)), InvalidCellLocationException.class);
+        assertThrows(() -> grid.setCell(Cell.DEAD, CellLocation.get(-1,0)), InvalidCellLocationException.class);
 
-        assertThrows(() -> grid.setCell(Cell.DEAD, new CellLocation(0,-1)), InvalidCellLocationException.class);
+        assertThrows(() -> grid.setCell(Cell.DEAD, CellLocation.get(0,-1)), InvalidCellLocationException.class);
     }
 
     @Test
@@ -67,9 +67,9 @@ public class GridTest
     {
         Grid grid = new Grid(10, 10);
 
-        assertThrows(() -> grid.setCell(Cell.DEAD, new CellLocation(0, 10)), InvalidCellLocationException.class);
+        assertThrows(() -> grid.setCell(Cell.DEAD, CellLocation.get(0, 10)), InvalidCellLocationException.class);
 
-        assertThrows(() -> grid.setCell(Cell.DEAD, new CellLocation(10, 0)), InvalidCellLocationException.class);
+        assertThrows(() -> grid.setCell(Cell.DEAD, CellLocation.get(10, 0)), InvalidCellLocationException.class);
     }
 
 
@@ -77,7 +77,7 @@ public class GridTest
     public void shouldReturnDeadCellIfCellWasNotSet() throws Exception
     {
         Grid grid = new Grid(1, 1);
-        Cell theCell = grid.getCell(new CellLocation(0,0));
+        Cell theCell = grid.getCell(CellLocation.get(0,0));
 
         assertFalse(theCell.isAlive());
     }
@@ -93,7 +93,7 @@ public class GridTest
         {
             for (int row = 0; row < grid.getHeight(); row++)
             {
-                assertFalse(grid.getCell(new CellLocation(col, row)).isAlive());
+                assertFalse(grid.getCell(CellLocation.get(col, row)).isAlive());
             }
         }
     }
@@ -102,7 +102,7 @@ public class GridTest
     public void shouldKillOneCell() throws Exception
     {
         Grid grid = new Grid(3, 3);
-        CellLocation location = new CellLocation(1, 1);
+        CellLocation location = CellLocation.get(1, 1);
         grid.setCell(Cell.ALIVE, location);
         grid.nextTurn();
 
@@ -113,9 +113,9 @@ public class GridTest
     public void shouldKeepOneCellAliveIfTwoNeighborsAreAlive() throws Exception
     {
         Grid grid = new Grid(3, 3);
-        CellLocation targetCellLocation = new CellLocation(1, 1);
-        CellLocation firstNeighbor = new CellLocation(0, 0);
-        CellLocation secondNeighbor = new CellLocation(0, 1);
+        CellLocation targetCellLocation = CellLocation.get(1, 1);
+        CellLocation firstNeighbor = CellLocation.get(0, 0);
+        CellLocation secondNeighbor = CellLocation.get(0, 1);
 
         grid.setCell(Cell.ALIVE, targetCellLocation);
         grid.setCell(Cell.ALIVE, firstNeighbor);
@@ -130,10 +130,10 @@ public class GridTest
     public void shouldKeepOneCellAliveIfThreeNeighborsAreAlive() throws Exception
     {
         Grid grid = new Grid(3, 3);
-        CellLocation targetCellLocation = new CellLocation(1, 1);
-        CellLocation firstNeighbor = new CellLocation(0, 0);
-        CellLocation secondNeighbor = new CellLocation(0, 1);
-        CellLocation thirdNeighbor = new CellLocation(0, 2);
+        CellLocation targetCellLocation = CellLocation.get(1, 1);
+        CellLocation firstNeighbor = CellLocation.get(0, 0);
+        CellLocation secondNeighbor = CellLocation.get(0, 1);
+        CellLocation thirdNeighbor = CellLocation.get(0, 2);
 
         grid.setCell(Cell.ALIVE, targetCellLocation);
         grid.setCell(Cell.ALIVE, firstNeighbor);
@@ -149,11 +149,11 @@ public class GridTest
     public void shouldKillCellIfFourNeighborsAreAlive() throws Exception
     {
         Grid grid = new Grid(3, 3);
-        CellLocation targetCellLocation = new CellLocation(1, 1);
-        CellLocation firstNeighbor = new CellLocation(0, 0);
-        CellLocation secondNeighbor = new CellLocation(0, 1);
-        CellLocation thirdNeighbor = new CellLocation(0, 2);
-        CellLocation fourthNeighbor = new CellLocation(1, 2);
+        CellLocation targetCellLocation = CellLocation.get(1, 1);
+        CellLocation firstNeighbor = CellLocation.get(0, 0);
+        CellLocation secondNeighbor = CellLocation.get(0, 1);
+        CellLocation thirdNeighbor = CellLocation.get(0, 2);
+        CellLocation fourthNeighbor = CellLocation.get(1, 2);
 
         grid.setCell(Cell.ALIVE, targetCellLocation);
         grid.setCell(Cell.ALIVE, firstNeighbor);
