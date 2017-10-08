@@ -7,7 +7,10 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.canvas.Canvas;
+import javafx.scene.control.Label;
 import javafx.stage.Stage;
+
+import java.util.concurrent.TimeUnit;
 
 public class GameOfLifeUI extends Application {
 
@@ -22,10 +25,11 @@ public class GameOfLifeUI extends Application {
         Parent root = loader.load();
         Scene scene = new Scene(root);
         primaryStage.setTitle("Conway's Game of Life");
-        primaryStage.setScene(new Scene(root));
+        primaryStage.setScene(scene);
         primaryStage.show();
 
         Canvas canvas = (Canvas) scene.lookup("#canvas");
+        Label turnLabel = (Label) scene.lookup("#turnNumberLabel");
 
         TwoDimentional canvasDimentions = new TwoDimentionalCanvas(canvas);
 
@@ -33,22 +37,32 @@ public class GameOfLifeUI extends Application {
         GridLocationResolver gridLocationResolver = new GridLocationResolver(grid, canvasDimentions);
         GridOverlay gridOverlay = new GridOverlay(grid, gridLocationResolver);
 
+        GameOfLifeController controller = loader.getController();
+        GridRenderer gridRenderer = new CanvasGridRenderer(canvas);
         ProgressTurnGameTickHandler timerHandler = new ProgressTurnGameTickHandler(grid);
+        timerHandler.setController(controller);
+        timerHandler.setTurnIntervalNanos(TimeUnit.MILLISECONDS.toNanos(1000L));
+
         RegisterableAnimationTimer animationTimer = new RegisterableAnimationTimer();
         animationTimer.registerHandler(timerHandler);
+        animationTimer.setExceptionHandler(this::handleTimerException);
 
         GameProgressTimer gameProgressTimer = new GameProgressTimer(animationTimer);
+        gameProgressTimer.setStartTimeCallback(timerHandler::setStartTimeNanos);
 
-        GameOfLifeController controller = loader.getController();
         controller.setGameProgressTimer(gameProgressTimer);
         controller.setGridOverlay(gridOverlay);
 
         controller.setGrid(grid);
 
-        GridRenderer gridRenderer = new CanvasGridRenderer(canvas);
         controller.setGridRenderer(gridRenderer);
 
-        controller.render();
+        controller.setTurnLabel(turnLabel);
 
+        controller.render();
+    }
+
+    private void handleTimerException(Exception e) {
+        e.printStackTrace(System.out);
     }
 }

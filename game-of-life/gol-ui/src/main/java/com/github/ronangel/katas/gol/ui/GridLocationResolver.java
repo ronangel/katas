@@ -30,7 +30,7 @@ public class GridLocationResolver {
             throw new InvalidCoordinateException("x coordinate is negative");
         }
 
-        if (x > height)
+        if (x > width)
         {
             throw new InvalidCoordinateException("x coordinate is out of bounds: " + x);
         }
@@ -40,7 +40,7 @@ public class GridLocationResolver {
             throw new InvalidCoordinateException("y coordinate is negative");
         }
 
-        if (y > width)
+        if (y > height)
         {
             throw new InvalidCoordinateException("y coordinate is out of bounds: " + y);
         }

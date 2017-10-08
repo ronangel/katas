@@ -16,12 +16,17 @@ import static org.mockito.Mockito.when;
 public class GridLocationResolverTest {
 
     private GridLocationResolver gridLocationResolver;
+    private double width;
+    private double height;
 
     @Before
     public void setup() throws InvalidGridSizeException {
+        width = 200.0;
+        height = 100.0;
+
         TwoDimentional twoDimentionalObject = mock(TwoDimentional.class);
-        when(twoDimentionalObject.getHeight()).thenReturn(100.0);
-        when(twoDimentionalObject.getWidth()).thenReturn(100.0);
+        when(twoDimentionalObject.getHeight()).thenReturn(height);
+        when(twoDimentionalObject.getWidth()).thenReturn(width);
 
         Grid grid = new Grid(2, 2);
         gridLocationResolver = new GridLocationResolver(grid, twoDimentionalObject);
@@ -29,29 +34,29 @@ public class GridLocationResolverTest {
     }
 
     @Test(expected = InvalidCoordinateException.class)
+    public void shouldThrowForNegativeX() throws Exception {
+        CellLocation location = gridLocationResolver.getCellLocation(-1.0, height / 2);
+    }
+
+    @Test(expected = InvalidCoordinateException.class)
     public void shouldThrowForNegativeY() throws Exception {
-        CellLocation location = gridLocationResolver.getCellLocation(50.0, -1.0);
+        CellLocation location = gridLocationResolver.getCellLocation(width / 2, -1.0);
     }
 
     @Test(expected = InvalidCoordinateException.class)
     public void shouldThrowForOutOfBoundsY() throws Exception {
-        CellLocation location = gridLocationResolver.getCellLocation(50.0, 101.0);
-    }
-
-    @Test(expected = InvalidCoordinateException.class)
-    public void shouldThrowForNegativeX() throws Exception {
-        CellLocation location = gridLocationResolver.getCellLocation(-1.0, 50.0);
+        CellLocation location = gridLocationResolver.getCellLocation(width / 2, height + 1);
     }
 
     @Test(expected = InvalidCoordinateException.class)
     public void shouldThrowForOutOfBoundsX() throws Exception{
-        CellLocation location = gridLocationResolver.getCellLocation(101.0, 50.0);
+        CellLocation location = gridLocationResolver.getCellLocation(width + 1, height / 2);
     }
 
     @Test
     public void shouldReturnBottomLeftCellForGridCoordinates() throws Exception {
         CellLocation expectedLocation = CellLocation.get(0, 0);
-        CellLocation actualLocation = gridLocationResolver.getCellLocation(25.0, 25.0);
+        CellLocation actualLocation = gridLocationResolver.getCellLocation(width *1/4, height * 1/4);
 
         assertEquals(expectedLocation, actualLocation);
     }
@@ -59,7 +64,7 @@ public class GridLocationResolverTest {
     @Test
     public void shouldReturnBottomRightCellForGridCoordinates() throws Exception {
         CellLocation expectedLocation = CellLocation.get(1, 0);
-        CellLocation actualLocation = gridLocationResolver.getCellLocation(75.0, 25.0);
+        CellLocation actualLocation = gridLocationResolver.getCellLocation(width * 3/4, height * 1/4);
 
         assertEquals(expectedLocation, actualLocation);
     }
@@ -67,7 +72,7 @@ public class GridLocationResolverTest {
     @Test
     public void shouldReturnTopLeftCellForGridCoordinates() throws Exception {
         CellLocation expectedLocation = CellLocation.get(0, 1);
-        CellLocation actualLocation = gridLocationResolver.getCellLocation(25.0, 75.0);
+        CellLocation actualLocation = gridLocationResolver.getCellLocation(width * 1/4, height *3/4);
 
         assertEquals(expectedLocation, actualLocation);
     }
@@ -75,7 +80,7 @@ public class GridLocationResolverTest {
     @Test
     public void shouldReturnTopRightCellForGridCoordinates() throws Exception {
         CellLocation expectedLocation = CellLocation.get(1, 1);
-        CellLocation actualLocation = gridLocationResolver.getCellLocation(75.0, 75.0);
+        CellLocation actualLocation = gridLocationResolver.getCellLocation(width *3/4, height * 3/4);
 
         assertEquals(expectedLocation, actualLocation);
     }

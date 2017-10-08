@@ -4,6 +4,7 @@ import com.github.ronangel.katas.gol.core.Grid;
 import com.github.ronangel.katas.gol.core.exceptions.InvalidCellLocationException;
 import com.github.ronangel.katas.gol.core.rendering.GridRenderer;
 import javafx.event.ActionEvent;
+import javafx.scene.control.Label;
 import javafx.scene.input.MouseEvent;
 
 public class GameOfLifeController {
@@ -12,6 +13,8 @@ public class GameOfLifeController {
     private GridOverlay gridOverlay;
     private Grid grid;
     private GridRenderer gridRenderer;
+    private int turnNumber;
+    private Label turnLabel;
 
     public GameOfLifeController() {
 
@@ -41,13 +44,28 @@ public class GameOfLifeController {
         gameProgressTimer.stop();
     }
 
-    public void gridMouseClick(MouseEvent mouseEvent) throws InvalidCoordinateException, InvalidCellLocationException {
+    public void gridMouseClick(MouseEvent mouseEvent) throws Exception {
         if (!gameProgressTimer.isStarted()) {
             gridOverlay.flipCell(mouseEvent.getX(), mouseEvent.getY());
+            gridRenderer.render(grid);
         }
     }
 
     public void render() throws Exception {
         gridRenderer.render(grid);
+    }
+
+    public void incrementTurnNumber() {
+        turnNumber++;
+
+        turnLabel.setText(Integer.toString(turnNumber));
+    }
+
+    public int getTurnNumber() {
+        return turnNumber;
+    }
+
+    public void setTurnLabel(Label turnLabel) {
+        this.turnLabel = turnLabel;
     }
 }

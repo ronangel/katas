@@ -11,7 +11,6 @@ import org.mockito.junit.MockitoJUnitRunner;
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertTrue;
-import static org.mockito.ArgumentMatchers.notNull;
 import static org.mockito.Mockito.*;
 
 @RunWith(MockitoJUnitRunner.class)
@@ -23,14 +22,13 @@ public class GameProgressTimerTest
     @Mock
     private TimestampProvider timestampProvider;
 
-    @Mock
-    private TimerHandler gameTickHandler;
-
     GameProgressTimer gameProgressTimer;
 
     @Before
     public void setup() throws Exception {
         gameProgressTimer = new GameProgressTimer(animationTimer);
+        gameProgressTimer.setTimestampProvider(timestampProvider);
+        when(timestampProvider.getCurrentTimeNanos()).thenReturn(42L);
     }
 
     @Test(expected = IllegalArgumentException.class)
@@ -40,7 +38,6 @@ public class GameProgressTimerTest
 
     @Test
     public void shouldCallAnimationTimerStartOnStart() {
-
         gameProgressTimer.start();
 
         verify(animationTimer).start();
@@ -48,7 +45,6 @@ public class GameProgressTimerTest
 
     @Test
     public void shouldCallAnimationTimerStopOnStop() {
-
         gameProgressTimer.stop();
 
         verify(animationTimer).stop();
@@ -56,7 +52,6 @@ public class GameProgressTimerTest
 
     @Test
     public void shouldReturnIsStartedAfterBeingStarted() {
-
         gameProgressTimer.start();
 
         assertTrue(gameProgressTimer.isStarted());
@@ -64,7 +59,6 @@ public class GameProgressTimerTest
 
     @Test
     public void shouldReturnNotStartedAfterBeingStopped() {
-
         gameProgressTimer.start();
         gameProgressTimer.stop();
 
@@ -82,12 +76,18 @@ public class GameProgressTimerTest
 
     @Test
     public void shouldReturnCorrectStartTime() {
-        gameProgressTimer.setTimestampProvider(timestampProvider);
+        gameProgressTimer.start();
 
-        when(timestampProvider.getCurrentTimeNanos()).thenReturn(42L);
+        assertEquals(42L, gameProgressTimer.getStartTimeNanos());
+    }
+
+    @Test
+    public void shouldCallSetStartTimeOnStartCallback() {
+        StartTimeCallback startTimeCallback = mock(StartTimeCallback.class);
+        gameProgressTimer.setStartTimeCallback(startTimeCallback);
 
         gameProgressTimer.start();
 
-        assertEquals(42L, gameProgressTimer.getStartTimeNano());
+        verify(startTimeCallback).setStartTime(42L);
     }
 }

@@ -5,9 +5,14 @@ import javafx.animation.AnimationTimer;
 public class RegisterableAnimationTimer extends AnimationTimer {
 
     private TimerHandler timerHandler;
+    private TimerExceptionHandler timerExceptionHandler;
 
     public void registerHandler(TimerHandler timerHandler) {
         this.timerHandler = timerHandler;
+    }
+
+    public void setExceptionHandler(TimerExceptionHandler timerExceptionHandler) {
+        this.timerExceptionHandler = timerExceptionHandler;
     }
 
     @Override
@@ -15,7 +20,14 @@ public class RegisterableAnimationTimer extends AnimationTimer {
 
         if (timerHandler != null)
         {
-            timerHandler.handle(now);
+            try {
+                timerHandler.handle(now);
+            } catch (Exception e) {
+                if (timerExceptionHandler != null)
+                {
+                    timerExceptionHandler.handleException(e);
+                }
+            }
         }
     }
 }

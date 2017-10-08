@@ -8,7 +8,8 @@ public class GameProgressTimer {
 
     private TimestampProvider timestampProvider;
     private boolean started;
-    private long startTimeNano;
+    private long startTimeNanos;
+    private StartTimeCallback startTimeCallback;
 
     public GameProgressTimer(AnimationTimer animationTimer) {
 
@@ -22,11 +23,20 @@ public class GameProgressTimer {
         this.timestampProvider = System::nanoTime;
     }
 
+    public void setStartTimeCallback(StartTimeCallback startTimeCallback) {
+        this.startTimeCallback = startTimeCallback;
+    }
+
     public void start() {
 
         animationTimer.start();
 
-        startTimeNano = timestampProvider.getCurrentTimeNanos();
+        startTimeNanos = timestampProvider.getCurrentTimeNanos();
+
+        if (startTimeCallback != null)
+        {
+            startTimeCallback.setStartTime(startTimeNanos);
+        }
 
         started = true;
     }
@@ -46,7 +56,7 @@ public class GameProgressTimer {
         this.timestampProvider = timestampProvider;
     }
 
-    public long getStartTimeNano() {
-        return startTimeNano;
+    public long getStartTimeNanos() {
+        return startTimeNanos;
     }
 }
