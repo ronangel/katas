@@ -88,6 +88,10 @@ public class Grid
         swapGrid(newGrid);
     }
 
+    public synchronized void reset() {
+        swapGrid(new Cell[width][height]);
+    }
+
     private List<Cell> getNeighbors(List<CellLocation> neighborLocations)
     {
         List<Cell> neighbors = new ArrayList<>();

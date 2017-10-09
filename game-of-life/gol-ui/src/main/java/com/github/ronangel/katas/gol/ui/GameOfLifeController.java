@@ -68,4 +68,10 @@ public class GameOfLifeController {
     public void setTurnLabel(Label turnLabel) {
         this.turnLabel = turnLabel;
     }
+
+    public void resetButtonPressed() throws Exception {
+        gameProgressTimer.stop();
+        grid.reset();
+        gridRenderer.render(grid);
+    }
 }

@@ -79,7 +79,7 @@ public class CanvasGridRenderer implements GridRenderer
 
         double cellWidth = width / grid.getWidth();
         double cellHeight = height / grid.getHeight();
-        double cellRadius = Math.min(cellWidth, cellHeight) / 2 - 4;
+//        double cellRadius = Math.min(cellWidth, cellHeight) / 2 - 4;
 
         for (int col = 0; col < grid.getWidth(); col++)
         {
@@ -89,10 +89,12 @@ public class CanvasGridRenderer implements GridRenderer
 
                 if (cell.isAlive())
                 {
-                    double cellCenterX = cellWidth * (col + .5);
-                    double cellCenterY = cellHeight * (row + .5);
+//                    double cellCenterX = cellWidth * (col + .5);
+//                    double cellCenterY = cellHeight * (row + .5);
 
-                    graphicsContext.fillOval(cellCenterX - cellRadius, cellCenterY - cellRadius, cellRadius * 2, cellRadius * 2);
+//                    graphicsContext.fillOval(cellCenterX - cellRadius, cellCenterY - cellRadius, cellRadius * 2, cellRadius * 2);
+
+                    graphicsContext.fillRect(col * cellWidth + 1, row * cellHeight + 1, cellWidth - 2, cellHeight - 2);
                 }
             }
         }

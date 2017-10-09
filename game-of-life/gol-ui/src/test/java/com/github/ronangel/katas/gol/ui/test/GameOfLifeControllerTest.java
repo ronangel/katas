@@ -46,6 +46,9 @@ public class GameOfLifeControllerTest
     @Mock
     private Label turnLabel;
 
+    @Mock
+    private Grid grid;
+
     @Before
     public void setup() {
         controller = new GameOfLifeController();
@@ -53,6 +56,7 @@ public class GameOfLifeControllerTest
         controller.setGridOverlay(gridOverlay);
         controller.setGridRenderer(gridRenderer);
         controller.setTurnLabel(turnLabel);
+        controller.setGrid(grid);
         mouseEvent = new MouseEvent(MouseEvent.MOUSE_CLICKED, 42.0, 84.0, 42.0, 84.0,
                 MouseButton.PRIMARY, 0, false, false, false,
                 false, false, false, false,
@@ -92,8 +96,6 @@ public class GameOfLifeControllerTest
     @Test
     public void shouldDelegateToGridRendererOnRender() throws Exception {
 
-        Grid grid = mock(Grid.class);
-
         controller.setGrid(grid);
         controller.setGridRenderer(gridRenderer);
 
@@ -126,10 +128,31 @@ public class GameOfLifeControllerTest
     }
 
     @Test
-    public void shouldUpdateLabelForTurnNumberOnIncrement() throws Exception {
+    public void shouldUpdateLabelForTurnNumberOnIncrement() {
         controller.incrementTurnNumber();
 
         assertEquals("1", turnLabel.getText());
+    }
+
+    @Test
+    public void shouldResetGridOnResetButtonPressed() throws Exception {
+        controller.resetButtonPressed();
+
+        verify(grid).reset();
+    }
+
+    @Test
+    public void shouldRenderOnResetButtonPressed() throws Exception {
+        controller.resetButtonPressed();
+
+        verify(gridRenderer).render(grid);
+    }
+
+    @Test
+    public void shouldStopTimerOnResetButtonPressed() throws Exception {
+        controller.resetButtonPressed();
+
+        verify(gameProgressTimer).stop();
     }
 
     @BeforeClass

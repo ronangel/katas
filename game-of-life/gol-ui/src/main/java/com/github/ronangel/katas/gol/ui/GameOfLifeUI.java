@@ -33,7 +33,7 @@ public class GameOfLifeUI extends Application {
 
         TwoDimentional canvasDimentions = new TwoDimentionalCanvas(canvas);
 
-        Grid grid = new Grid(15, 10);
+        Grid grid = new Grid(100, 50);
         GridLocationResolver gridLocationResolver = new GridLocationResolver(grid, canvasDimentions);
         GridOverlay gridOverlay = new GridOverlay(grid, gridLocationResolver);
 
@@ -41,7 +41,7 @@ public class GameOfLifeUI extends Application {
         GridRenderer gridRenderer = new CanvasGridRenderer(canvas);
         ProgressTurnGameTickHandler timerHandler = new ProgressTurnGameTickHandler(grid);
         timerHandler.setController(controller);
-        timerHandler.setTurnIntervalNanos(TimeUnit.MILLISECONDS.toNanos(1000L));
+        timerHandler.setTurnIntervalNanos(TimeUnit.MILLISECONDS.toNanos(10));
 
         RegisterableAnimationTimer animationTimer = new RegisterableAnimationTimer();
         animationTimer.registerHandler(timerHandler);

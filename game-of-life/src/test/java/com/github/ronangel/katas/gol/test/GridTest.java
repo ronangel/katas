@@ -165,4 +165,21 @@ public class GridTest
 
         assertFalse(grid.getCell(targetCellLocation).isAlive());
     }
+
+    @Test
+    public void shouldResetAllCellsToDeadOnReset() throws Exception{
+        Grid grid = new Grid(2, 2);
+        grid.setCell(Cell.ALIVE, CellLocation.get(0, 0));
+        grid.setCell(Cell.ALIVE, CellLocation.get(1, 0));
+        grid.setCell(Cell.ALIVE, CellLocation.get(0, 1));
+        grid.setCell(Cell.ALIVE, CellLocation.get(1, 1));
+
+        grid.reset();
+
+        assertEquals(Cell.DEAD, grid.getCell(CellLocation.get(0,0)));
+        assertEquals(Cell.DEAD, grid.getCell(CellLocation.get(1,0)));
+        assertEquals(Cell.DEAD, grid.getCell(CellLocation.get(0,1)));
+        assertEquals(Cell.DEAD, grid.getCell(CellLocation.get(1,1)));
+    }
+
 }
