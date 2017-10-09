@@ -1,7 +1,7 @@
 package com.github.ronangel.katas.gol.ui;
 
 import com.github.ronangel.katas.gol.core.Grid;
-import com.github.ronangel.katas.gol.core.rendering.GridRenderer;
+import com.github.ronangel.katas.gol.ui.timer.TimerHandler;
 
 public class ProgressTurnGameTickHandler implements TimerHandler {
 
@@ -9,7 +9,6 @@ public class ProgressTurnGameTickHandler implements TimerHandler {
 
     private long intervalNanos;
     private long lastTurnNanos;
-    private GridRenderer gridRenderer;
     private GameOfLifeController controller;
 
     public ProgressTurnGameTickHandler(Grid grid) {

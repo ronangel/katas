@@ -1,4 +1,4 @@
-package com.github.ronangel.katas.gol.ui;
+package com.github.ronangel.katas.gol.ui.mechanics;
 
 import javafx.scene.canvas.Canvas;
 

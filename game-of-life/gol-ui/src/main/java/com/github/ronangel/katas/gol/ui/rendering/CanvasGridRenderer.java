@@ -1,4 +1,4 @@
-package com.github.ronangel.katas.gol.ui;
+package com.github.ronangel.katas.gol.ui.rendering;
 
 import com.github.ronangel.katas.gol.core.Cell;
 import com.github.ronangel.katas.gol.core.CellLocation;
@@ -11,10 +11,16 @@ import javafx.scene.paint.Color;
 public class CanvasGridRenderer implements GridRenderer
 {
     private final Canvas canvas;
+    private CellRenderer cellRenderer;
 
     public CanvasGridRenderer(Canvas canvas)
     {
         this.canvas = canvas;
+        this.cellRenderer = new CellRenderer();
+    }
+
+    public void setCellRenderer(CellRenderer cellRenderer) {
+        this.cellRenderer = cellRenderer;
     }
 
     @Override
@@ -65,11 +71,11 @@ public class CanvasGridRenderer implements GridRenderer
             graphicsContext.strokeLine(x, 0, x, height);
         }
 
+        // draw vertical lines
         for (double y = 0; y < height; y += cellHeight)
         {
             graphicsContext.strokeLine(0, y, width, y);
         }
-
     }
 
     private void drawCells(GraphicsContext graphicsContext, Grid grid)
@@ -79,7 +85,6 @@ public class CanvasGridRenderer implements GridRenderer
 
         double cellWidth = width / grid.getWidth();
         double cellHeight = height / grid.getHeight();
-//        double cellRadius = Math.min(cellWidth, cellHeight) / 2 - 4;
 
         for (int col = 0; col < grid.getWidth(); col++)
         {
@@ -89,12 +94,7 @@ public class CanvasGridRenderer implements GridRenderer
 
                 if (cell.isAlive())
                 {
-//                    double cellCenterX = cellWidth * (col + .5);
-//                    double cellCenterY = cellHeight * (row + .5);
-
-//                    graphicsContext.fillOval(cellCenterX - cellRadius, cellCenterY - cellRadius, cellRadius * 2, cellRadius * 2);
-
-                    graphicsContext.fillRect(col * cellWidth + 1, row * cellHeight + 1, cellWidth - 2, cellHeight - 2);
+                    cellRenderer.render(graphicsContext, col * cellWidth, row * cellHeight, cellWidth, cellHeight);
                 }
             }
         }

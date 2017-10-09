@@ -1,8 +1,8 @@
 package com.github.ronangel.katas.gol.ui.test;
 
 import com.github.ronangel.katas.gol.core.Grid;
-import com.github.ronangel.katas.gol.ui.GridController;
-import com.github.ronangel.katas.gol.ui.GridOverlay;
+import com.github.ronangel.katas.gol.ui.mechanics.GridController;
+import com.github.ronangel.katas.gol.ui.mechanics.GridOverlay;
 import org.junit.Before;
 import org.junit.Test;
 

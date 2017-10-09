@@ -1,4 +1,4 @@
-package com.github.ronangel.katas.gol.ui;
+package com.github.ronangel.katas.gol.ui.mechanics;
 
 import com.github.ronangel.katas.gol.core.Grid;
 import com.github.ronangel.katas.gol.core.exceptions.InvalidCellLocationException;

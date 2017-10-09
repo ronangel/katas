@@ -1,4 +1,4 @@
-package com.github.ronangel.katas.gol.ui;
+package com.github.ronangel.katas.gol.ui.timer;
 
 public interface TimerHandler {
 

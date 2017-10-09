@@ -3,11 +3,8 @@ package com.github.ronangel.katas.gol.ui.test;
 import com.github.ronangel.katas.gol.core.Cell;
 import com.github.ronangel.katas.gol.core.CellLocation;
 import com.github.ronangel.katas.gol.core.Grid;
-import com.github.ronangel.katas.gol.core.exceptions.InvalidCellLocationException;
-import com.github.ronangel.katas.gol.ui.GridLocationResolver;
-import com.github.ronangel.katas.gol.ui.GridOverlay;
-import com.github.ronangel.katas.gol.ui.InvalidCoordinateException;
-import com.intellij.util.xmlb.annotations.Text;
+import com.github.ronangel.katas.gol.ui.mechanics.GridLocationResolver;
+import com.github.ronangel.katas.gol.ui.mechanics.GridOverlay;
 import org.junit.Before;
 import org.junit.Test;
 

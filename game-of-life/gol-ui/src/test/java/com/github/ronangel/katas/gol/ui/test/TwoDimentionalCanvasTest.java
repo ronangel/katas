@@ -1,6 +1,6 @@
 package com.github.ronangel.katas.gol.ui.test;
 
-import com.github.ronangel.katas.gol.ui.TwoDimentionalCanvas;
+import com.github.ronangel.katas.gol.ui.mechanics.TwoDimentionalCanvas;
 import javafx.scene.canvas.Canvas;
 import org.junit.Before;
 import org.junit.Test;

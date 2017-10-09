@@ -2,7 +2,9 @@ package com.github.ronangel.katas.gol.ui.test;
 
 import com.github.ronangel.katas.gol.core.Grid;
 import com.github.ronangel.katas.gol.core.rendering.GridRenderer;
-import com.github.ronangel.katas.gol.ui.*;
+import com.github.ronangel.katas.gol.ui.GameOfLifeController;
+import com.github.ronangel.katas.gol.ui.mechanics.GridOverlay;
+import com.github.ronangel.katas.gol.ui.timer.GameProgressTimer;
 import javafx.embed.swing.JFXPanel;
 import javafx.event.ActionEvent;
 import javafx.scene.control.Label;
@@ -153,6 +155,13 @@ public class GameOfLifeControllerTest
         controller.resetButtonPressed();
 
         verify(gameProgressTimer).stop();
+    }
+
+    @Test
+    public void shouldResetTurnCounterToZeroOnResetButtonPressed() throws Exception {
+        controller.resetButtonPressed();
+
+        assertEquals("0", turnLabel.getText());
     }
 
     @BeforeClass

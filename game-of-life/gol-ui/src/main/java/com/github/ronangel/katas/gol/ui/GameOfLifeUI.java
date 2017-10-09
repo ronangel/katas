@@ -2,6 +2,13 @@ package com.github.ronangel.katas.gol.ui;
 
 import com.github.ronangel.katas.gol.core.Grid;
 import com.github.ronangel.katas.gol.core.rendering.GridRenderer;
+import com.github.ronangel.katas.gol.ui.mechanics.GridLocationResolver;
+import com.github.ronangel.katas.gol.ui.mechanics.GridOverlay;
+import com.github.ronangel.katas.gol.ui.mechanics.TwoDimentional;
+import com.github.ronangel.katas.gol.ui.mechanics.TwoDimentionalCanvas;
+import com.github.ronangel.katas.gol.ui.rendering.CanvasGridRenderer;
+import com.github.ronangel.katas.gol.ui.timer.GameProgressTimer;
+import com.github.ronangel.katas.gol.ui.timer.RegisterableAnimationTimer;
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
@@ -41,7 +48,7 @@ public class GameOfLifeUI extends Application {
         GridRenderer gridRenderer = new CanvasGridRenderer(canvas);
         ProgressTurnGameTickHandler timerHandler = new ProgressTurnGameTickHandler(grid);
         timerHandler.setController(controller);
-        timerHandler.setTurnIntervalNanos(TimeUnit.MILLISECONDS.toNanos(10));
+        timerHandler.setTurnIntervalNanos(TimeUnit.MILLISECONDS.toNanos(5));
 
         RegisterableAnimationTimer animationTimer = new RegisterableAnimationTimer();
         animationTimer.registerHandler(timerHandler);

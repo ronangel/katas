@@ -1,8 +1,8 @@
 package com.github.ronangel.katas.gol.ui.test;
 
-import com.github.ronangel.katas.gol.ui.RegisterableAnimationTimer;
-import com.github.ronangel.katas.gol.ui.TimerExceptionHandler;
-import com.github.ronangel.katas.gol.ui.TimerHandler;
+import com.github.ronangel.katas.gol.ui.timer.RegisterableAnimationTimer;
+import com.github.ronangel.katas.gol.ui.timer.TimerExceptionHandler;
+import com.github.ronangel.katas.gol.ui.timer.TimerHandler;
 import org.junit.Test;
 
 import static org.mockito.Mockito.*;

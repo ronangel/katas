@@ -1,6 +1,8 @@
 package com.github.ronangel.katas.gol.ui.test;
 
-import com.github.ronangel.katas.gol.ui.*;
+import com.github.ronangel.katas.gol.ui.timer.GameProgressTimer;
+import com.github.ronangel.katas.gol.ui.timer.StartTimeCallback;
+import com.github.ronangel.katas.gol.ui.timer.TimestampProvider;
 import javafx.animation.AnimationTimer;
 import org.junit.Before;
 import org.junit.Test;

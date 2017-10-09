@@ -1,8 +1,9 @@
 package com.github.ronangel.katas.gol.ui;
 
 import com.github.ronangel.katas.gol.core.Grid;
-import com.github.ronangel.katas.gol.core.exceptions.InvalidCellLocationException;
 import com.github.ronangel.katas.gol.core.rendering.GridRenderer;
+import com.github.ronangel.katas.gol.ui.timer.GameProgressTimer;
+import com.github.ronangel.katas.gol.ui.mechanics.GridOverlay;
 import javafx.event.ActionEvent;
 import javafx.scene.control.Label;
 import javafx.scene.input.MouseEvent;
@@ -73,5 +74,6 @@ public class GameOfLifeController {
         gameProgressTimer.stop();
         grid.reset();
         gridRenderer.render(grid);
+        turnLabel.setText("0");
     }
 }

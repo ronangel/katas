@@ -3,9 +3,9 @@ package com.github.ronangel.katas.gol.ui.test;
 import com.github.ronangel.katas.gol.core.CellLocation;
 import com.github.ronangel.katas.gol.core.Grid;
 import com.github.ronangel.katas.gol.core.exceptions.InvalidGridSizeException;
-import com.github.ronangel.katas.gol.ui.GridLocationResolver;
-import com.github.ronangel.katas.gol.ui.InvalidCoordinateException;
-import com.github.ronangel.katas.gol.ui.TwoDimentional;
+import com.github.ronangel.katas.gol.ui.mechanics.GridLocationResolver;
+import com.github.ronangel.katas.gol.ui.mechanics.InvalidCoordinateException;
+import com.github.ronangel.katas.gol.ui.mechanics.TwoDimentional;
 import org.junit.Before;
 import org.junit.Test;
 
